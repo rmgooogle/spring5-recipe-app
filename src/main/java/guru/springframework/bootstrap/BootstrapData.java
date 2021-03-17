@@ -31,6 +31,21 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         recipeRepository.saveAll(getRecipes());
     }
 
+    private UnitOfMeasure findUOM(String description){
+        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription(description);
+        if(!unitOfMeasureOptional.isPresent()){
+            throw new RuntimeException("Expected UOM Not Found");
+        }
+        return unitOfMeasureOptional.get();
+    }
+
+    private Category findCategory(String description){
+        Optional<Category> categoryOptional = categoryRepository.findByDescription(description);
+        if(!categoryOptional.isPresent()){
+            throw new RuntimeException("Category");
+        }
+        return categoryOptional.get();
+    }
 
     private List<Recipe> getRecipes(){
         List<Recipe> recipes = new ArrayList<>();
@@ -44,55 +59,61 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         INSERT INTO unit_of_measure (description) VALUES ('Each');
         INSERT INTO unit_of_measure (description) VALUES ('Dash');
         INSERT INTO unit_of_measure (description) VALUES ('Pint');*/
+        /*
+                Optional<UnitOfMeasure> teaspoonUomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+                if(!teaspoonUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }
 
-        Optional<UnitOfMeasure> teaspoonUomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
-        if(!teaspoonUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
+                Optional<UnitOfMeasure> tablespoonUomOptional = unitOfMeasureRepository.findByDescription("Tablespoon");
+                if(!tablespoonUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }
 
-        Optional<UnitOfMeasure> tablespoonUomOptional = unitOfMeasureRepository.findByDescription("Tablespoon");
-        if(!tablespoonUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
+                Optional<UnitOfMeasure> cupUomOptional = unitOfMeasureRepository.findByDescription("Cup");
+                if(!cupUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }
 
-        Optional<UnitOfMeasure> cupUomOptional = unitOfMeasureRepository.findByDescription("Cup");
-        if(!cupUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
+                Optional<UnitOfMeasure> pinchUomOptional = unitOfMeasureRepository.findByDescription("Pinch");
+                if(!pinchUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }
 
-        Optional<UnitOfMeasure> pinchUomOptional = unitOfMeasureRepository.findByDescription("Pinch");
-        if(!pinchUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
+                Optional<UnitOfMeasure> ounceUomOptional = unitOfMeasureRepository.findByDescription("Ounce");
+                if(!ounceUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }
 
-        Optional<UnitOfMeasure> ounceUomOptional = unitOfMeasureRepository.findByDescription("Ounce");
-        if(!ounceUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
+                Optional<UnitOfMeasure> dashUomOptional = unitOfMeasureRepository.findByDescription("Dash");
+                if(!dashUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }
 
-        Optional<UnitOfMeasure> dashUomOptional = unitOfMeasureRepository.findByDescription("Dash");
-        if(!dashUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
+                Optional<UnitOfMeasure> pintUomOptional = unitOfMeasureRepository.findByDescription("Pint");
+                if(!pintUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }
 
-        Optional<UnitOfMeasure> pintUomOptional = unitOfMeasureRepository.findByDescription("Pint");
-        if(!pintUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
+                Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Each");
+                if(!eachUomOptional.isPresent()){
+                    throw new RuntimeException("Expected UOM Not Found");
+                }*/
 
-        Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Each");
-        if(!eachUomOptional.isPresent()){
-            throw new RuntimeException("Expected UOM Not Found");
-        }
 
-        UnitOfMeasure each = eachUomOptional.get();
-        UnitOfMeasure teaspoon = teaspoonUomOptional.get();
-        UnitOfMeasure tablespoon = tablespoonUomOptional.get();
-        UnitOfMeasure cup = cupUomOptional.get();
-        UnitOfMeasure pinch = pinchUomOptional.get();
-        UnitOfMeasure ounce = ounceUomOptional.get();
-        UnitOfMeasure dash = dashUomOptional.get();
-        UnitOfMeasure pint = pintUomOptional.get();
+        UnitOfMeasure each = findUOM("Each");
+        UnitOfMeasure teaspoon = findUOM("Teaspoon");
+        UnitOfMeasure tablespoon = findUOM("Tablespoon");
+        UnitOfMeasure cup = findUOM("Cup");
+        UnitOfMeasure pinch =findUOM("Pinch");
+        UnitOfMeasure ounce = findUOM("Ounce");
+        UnitOfMeasure dash = findUOM("Dash");
+        UnitOfMeasure pint = findUOM("Pint");
+
+        Category americanCategory = findCategory("American");
+        Category russianCategory = findCategory("Russian");
+        Category kazCategory = findCategory("Kazakhstan");
+        Category mexicanCategory = findCategory("Mexican");
 
 
         Recipe guacRecipe = new Recipe();
@@ -100,6 +121,9 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         guacRecipe.setPrepTime(10);
         guacRecipe.setCookTime(0);
         guacRecipe.setDifficulty(Difficulty.EASY);
+        guacRecipe.setServings(2);
+        guacRecipe.setSource("http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvpiV9Sd");
+        guacRecipe.getCategories().add(americanCategory);
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon" +
                 "\n" +
                 "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)" +
@@ -131,6 +155,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         guacRecipe.getIngredients().add(new Ingredient("Cilantro", new BigDecimal(2), tablespoon, guacRecipe));
         guacRecipe.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash, guacRecipe));
         guacRecipe.getIngredients().add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each, guacRecipe));
+
 
         recipes.add(guacRecipe);
     return recipes;
