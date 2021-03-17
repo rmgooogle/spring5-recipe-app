@@ -5,7 +5,43 @@
     <title>Recipe Home</title>
 </head>
 <body>
-<h1 th:text="${message}">My Recipes  1235</h1>
+<h1 th:text="${message}"></h1>
 <h2 th:text="${message2}"></h2>
+
+<table >
+<thead>
+<tr>
+    <th style="width: 30px;">Id</th>
+    <th style="width: 100px;">Recipes</th>
+    <th style="width: 150px;">Ingridienst</th>
+    <th style="width: 250px;">Directions</th>
+</tr>
+
+</thead>
+    <tbody>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.id}">123</td>
+        <td th:text="${recipe.description}">Tasty Goodnees</td>
+
+        <td>
+                <span th:each="ingredient: ${recipe.ingredients}"> <br>
+                    <span th:text="${ingredient.description}"/>-
+                    <span th:text="${ingredient.uom.uom}"/>:
+                    <span th:text="${ingredient.amount}"/>
+                </span>
+        </td >
+
+        <td th:text="${recipe.directions}">
+
+
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+
 </body>
 </html>
