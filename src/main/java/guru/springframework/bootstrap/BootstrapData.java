@@ -155,9 +155,46 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         guacRecipe.getIngredients().add(new Ingredient("Cilantro", new BigDecimal(2), tablespoon, guacRecipe));
         guacRecipe.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dash, guacRecipe));
         guacRecipe.getIngredients().add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each, guacRecipe));
-
-
         recipes.add(guacRecipe);
+
+
+
+
+        Recipe pizzaRecipe = new Recipe();
+        pizzaRecipe.setDescription("Homemade Pizza & Pizza Dough");
+        pizzaRecipe.setPrepTime(120);
+        pizzaRecipe.setCookTime(30);
+        pizzaRecipe.setDifficulty(Difficulty.KIND_OF_HARD);
+        pizzaRecipe.setServings(4);
+        pizzaRecipe.setSource("https://www.simplyrecipes.com/recipes/homemade_pizza/");
+        pizzaRecipe.getCategories().add(mexicanCategory);
+        pizzaRecipe.setDirections("1. Proof the yeast\n" +
+                "Place the warm water in the large bowl of a heavy duty stand mixer. \n" +
+                "Sprinkle the yeast over the warm water and let it sit for 5 minutes\n" +
+                " until the yeast is dissolved.\n" +
+                "After 5 minutes stir if the yeast hasn't dissolved completely.\n " +
+                " The yeast should begin to foam or bloom, indicating that the \n" +
+                "yeast is still active and alive.\n" +
+                "\n" +
+                "(Note that if you are using \"instant yeast\" instead of \"active yeast\", \n" +
+                "no proofing is required. Just add to the flour in the next step.)\n");
+        Notes pizzaNotes = new Notes();
+        pizzaNotes.setRecipeNotes("Pizza dough is a yeasted dough which requires active dry yeast.\n" +
+                " Make sure the check the expiration date on the yeast package! \n" +
+                "Yeast that is too old may be dead and won't work.\n " +
+                "You can use all purpose flour instead of the bread flour that is called for in the recipe,\n " +
+                "but bread flour is higher in gluten than all-purpose flour and will make a crispier crust\n " +
+                "for your pizza. Cup measurements can vary depending on how you are scooping the flour\n" +
+                " (we fluff the flour, lightly scoop it, and level with a knife).\n " +
+                "So I recommend using a kitchen scale to measure out the flour amounts by weight.\n " +
+                "This is the only way you'll get a consistently accurate measurement.\n");
+        pizzaRecipe.setNotes(pizzaNotes);
+        pizzaNotes.setRecipe(pizzaRecipe);
+
+        pizzaRecipe.addIngridient(new Ingredient("warm water (105°F-115°F)",new BigDecimal(.5),cup,pizzaRecipe));
+        pizzaRecipe.addIngridient((new Ingredient("of active dry yeast",new BigDecimal(.25), teaspoon,pizzaRecipe)));
+
+    recipes.add(pizzaRecipe);
     return recipes;
 }
 
