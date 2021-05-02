@@ -8,10 +8,8 @@ import guru.springframework.repositories.UnitOfMeasureRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
+
 
 @Controller
 public class IndexController {
@@ -23,14 +21,10 @@ public class IndexController {
     }
 
     @RequestMapping({"","/","/index","xyindex"})
-    public String getIndexPage(HttpServletRequest request, Model model){
-
-        String welcomeMessage = "now in ";
-        model.addAttribute("message",  request.getRequestURL().toString() );
-        model.addAttribute("message2", welcomeMessage + request.getRequestURI());
-
+    public String getIndexPage(Model model){
 
         model.addAttribute("recipes", recipeService.getRecipes());
+        model.addAttribute("new",recipeService.getRecipes());
 
         return "index";
     }
