@@ -168,6 +168,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         pizzaRecipe.setServings(4);
         pizzaRecipe.setSource("https://www.simplyrecipes.com/recipes/homemade_pizza/");
         pizzaRecipe.getCategories().add(mexicanCategory);
+        pizzaRecipe.getCategories().add(russianCategory);
         pizzaRecipe.setDirections("1. Proof the yeast\n" +
                 "Place the warm water in the large bowl of a heavy duty stand mixer. \n" +
                 "Sprinkle the yeast over the warm water and let it sit for 5 minutes\n" +

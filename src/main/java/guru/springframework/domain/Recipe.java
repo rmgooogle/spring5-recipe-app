@@ -46,9 +46,6 @@ public class Recipe {
     private Difficulty difficulty;
 
 
-
-
-
     public void setNotes(Notes notes) {
         this.notes = notes;
         notes.setRecipe(this);

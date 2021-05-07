@@ -14,6 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.js}"></script>
+
 </head>
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
@@ -29,9 +30,10 @@
                             <thead class="thead-inverse">
                             <tr>
                                 <th>ID</th>
-                                <th>Description</th>
-                                <th >Ingredients</th>
-                                <th >Directions</th>
+                                <th>Description </th>
+                                <th >Ingredients </th>
+                                <th >Directions </th>
+                                <th> View </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,8 +50,7 @@
                                 </td >
 
                                 <td th:text="${recipe.directions}">
-
-
+                                <td><a th:href="@{'recipes/show/'+ ${recipe.id}}"> View </a></td>
                                 </td>
                             </tr>
 
