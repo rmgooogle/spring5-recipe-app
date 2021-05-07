@@ -122,7 +122,8 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         guacRecipe.setCookTime(0);
         guacRecipe.setDifficulty(Difficulty.EASY);
         guacRecipe.setServings(2);
-        guacRecipe.setSource("http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvpiV9Sd");
+        guacRecipe.setUrl("http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvpiV9Sd");
+        guacRecipe.setSource("ABC");
         guacRecipe.getCategories().add(americanCategory);
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon" +
                 "\n" +
@@ -166,7 +167,8 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         pizzaRecipe.setCookTime(30);
         pizzaRecipe.setDifficulty(Difficulty.KIND_OF_HARD);
         pizzaRecipe.setServings(4);
-        pizzaRecipe.setSource("https://www.simplyrecipes.com/recipes/homemade_pizza/");
+        pizzaRecipe.setSource("DFG");
+        pizzaRecipe.setUrl("https://www.simplyrecipes.com/recipes/homemade_pizza/");
         pizzaRecipe.getCategories().add(mexicanCategory);
         pizzaRecipe.getCategories().add(russianCategory);
         pizzaRecipe.setDirections("1. Proof the yeast\n" +

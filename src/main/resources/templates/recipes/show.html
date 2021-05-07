@@ -31,8 +31,8 @@
                                 <h5>Categories:</h5>
                             </div>
                             <div class="col-md-9">
-                                <ul th:each="categoryes:${recipe.getCategories()}">
-                                    <li th:text="${categoryes.getDescription()}">123</li>
+                                <ul >
+                                    <li th:each="categoryes:${recipe.getCategories()}" th:text="${categoryes.getDescription()}">123</li>
                                 </ul>
                             </div>
                         </div>
@@ -66,16 +66,16 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                <h5>Id:</h5>
+                                <h5>Source:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${recipe.getId()} ">id</p>
+                                <p th:text="${recipe.getSource()} ">id</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>URL:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p><a th:href="@{${recipe.getSource()}}">Source</a> </p>
+                                <p><a th:href="@{${recipe.getUrl()}}">Source</a> </p>
                             </div>
                         </div>
                     </div>
@@ -87,8 +87,11 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <ul th:each="ingridients:${recipe.getIngredients()}">
-                                    <li th:text = "${ingridients.getAmount().toString()} + ' '+${ingridients.getUom().getDescription()} " >1 Cup of milk</li>
+                                <ul>
+                                    <li  th:each="ingridients:${recipe.getIngredients()}"
+                                         th:text = "${ingridients.getAmount() +
+                                         ' ' + ingridients.getUom().getDescription() +
+                                         ' - ' + ingridients.getDescription()}" >1 Cup of milk</li>
 
 
                                 </ul>
@@ -115,7 +118,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Notes</p>
+                                <p  th:text = "${recipe.notes.recipeNotes}">Notes</p>
                             </div>
                         </div>
                     </div>
